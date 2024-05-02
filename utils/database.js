@@ -10,7 +10,9 @@ export const connectToDB = async() => {
         console.log('MongoDB is already connected');
     }
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        const url = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/promptopia'
+
+        await mongoose.connect(url, {
             dbName: 'share_prompt',
             useUnifiedTopology: true,
         })
